@@ -402,7 +402,7 @@
       - '(^|https?://)(.*\.)?hp\.ca(/.*)?'
       - '(^|https?://)(.*\.)?hp\.com(/.*)?'
       - '(^|https?://)(.*\.)?lg\.com(/.*)?'
-#Shit Telecommunication.*panies
+#Shit Telecommunication Companies
       - '(.*\.)?bce.ca$'
       - '(.*\.)?bell.ca$'
       - '(.*\.)?bell.mobi$'
