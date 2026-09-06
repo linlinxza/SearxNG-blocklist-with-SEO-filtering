@@ -1,0 +1,220 @@
+# SearXNG settings
+
+use_default_settings: true
+
+general:
+  debug: false
+  instance_name: "SearXNG"
+
+search:
+  safe_search: 2
+  autocomplete: 'duckduckgo'
+  default_lang: "en-CA"
+
+Available languages:
+languages:
+   - en
+   - en-CA
+   - en-US
+
+categories_as_tabs:
+  general:
+  images:
+
+server:
+  # Is overwritten by ${SEARXNG_PORT} and ${SEARXNG_BIND_ADDRESS}
+  #port: 8888
+  #bind_address: "127.0.1.1"
+  # public URL of the instance, to ensure correct inbound links. Is overwritten
+  # by ${SEARXNG_URL}.
+  base_url: false  # "http://example.com/location"
+  # rate limit the number of request on the instance, block some bots.
+  # Is overwritten by ${SEARXNG_LIMITER}
+  limiter: false
+  # enable features designed only for public instances.
+  # Is overwritten by ${SEARXNG_PUBLIC_INSTANCE}
+  public_instance: false
+
+  # If your instance owns a /etc/searxng/settings.yml file, then set the following
+  # values there.
+
+  secret_key: "899uujo098jujugtdf6ibhgo7y7"  # Is overwritten by ${SEARXNG_SECRET}
+  # Proxy image results through SearXNG. Is overwritten by ${SEARXNG_IMAGE_PROXY}
+  image_proxy: true
+  # 1.0 and 1.1 are supported
+  http_protocol_version: "1.0"
+  # POST queries are more secure as they don't show up in history but may cause
+  # problems when using Firefox containers
+  method: "POST"
+  default_http_headers:
+    X-Content-Type-Options: nosniff
+    X-Download-Options: noopen
+    X-Robots-Tag: noindex, nofollow
+    Referrer-Policy: no-referrer
+
+redis:
+  # URL to connect redis database. Is overwritten by ${SEARXNG_REDIS_URL}.
+  url: redis://redis:6379/0
+
+ui:
+ # templates_path: "/usr/local/searxng/custom_templates/"
+  static_use_hash: true
+  results_on_new_tab: true
+
+# preferences:
+#   lock:
+#     - autocomplete
+#     - method
+
+enabled_plugins:
+  - 'Hash plugin'
+  - 'Self Informations'
+  - 'Tracker URL remover'
+  - 'Ahmia blacklist'
+  - 'Hostnames plugin'  # see 'hostnames' configuration below
+  # - 'Open Access DOI rewrite'
+
+# plugins:
+#   - only_show_green_results
+
+# hostnames:
+#   replace:
+#     '(.*\.)?youtube\.com$': 'invidious.example.com'
+#     '(.*\.)?youtu\.be$': 'invidious.example.com'
+#   remove:
+#     - '(.*\.)?facebook.com$'
+#   low_priority:
+#     - '(.*\.)?google\.com$'
+#   high_priority:
+#     - '(.*\.)?wikipedia.org$'
+hostnames:
+  remove: 'blocklist.yml'
+
+engines:
+    - name: artic
+      disabled: true
+
+    - name: bing
+      disabled: true
+    - name: bing images
+      disabled: true
+    - name: bing videos
+      disabled: true
+
+    - name: brave
+      disabled: true
+      categories: general
+      paging: false
+
+    - name: deviantart
+      disabled: true
+
+    - name: duckduckgo
+      disabled: true
+      categories: general
+      paging: false
+
+    - name: duckduckgo images
+      disabled: false
+    - name: duckduckgo videos
+      disabled: true
+
+    - name: duckduckgo web
+      disabled: false
+      categories: general
+      paging: false
+
+    - name: flickr
+      disabled: true
+
+    - name: google cse
+      disabled: true
+    - name: google images
+      disabled: true
+    - name: google videos
+      disabled: true
+
+    - name: imgur
+      disabled: false
+
+    - name: library of congress
+      disabled: true
+
+    - name: mojeek
+      disabled: true
+      categories: general
+      paging: false
+
+    - name: mojeek images
+      disabled: false
+
+    - name: odysee
+      disabled: false
+
+    - name: openverse
+      disabled: true
+
+    - name: peertube
+      disabled: false
+
+    - name: piped
+      disabled: true
+
+    - name: piped.music
+      disabled: true
+
+    - name: pinterest
+      disabled: true
+
+    - name: presearch
+      disabled: true
+    - name: presearch images
+      disabled: true
+    - name: presearch videos
+      disabled: true
+
+    - name: qwant
+      disabled: true
+    - name: qwant images
+      disabled: true
+    - name: qwant videos
+      disabled: true
+
+    - name: startpage
+      disabled: true
+      categories: general
+      paging: false
+
+    - name: unsplash
+      disabled: true
+
+    - name: wikicommons.images
+      disabled: true
+
+    - name: wikicommons.audio
+      disabled: true
+
+    - name: wikicommons.videos
+      disabled: true
+
+    - name: youtube
+      disabled: true
+
+#   - name: fdroid
+#     disabled: false
+#
+#   - name: apk mirror
+#     disabled: false
+#
+#   - name: mediathekviewweb
+#     categories: TV
+#     disabled: false
+#
+#   - name: invidious
+#     disabled: false
+#     base_url:
+#       - https://invidious.snopyta.org
+#       - https://invidious.tiekoetter.com
+#       - https://invidio.xamh.de
+#       - https://inv.riverside.rocks
+
